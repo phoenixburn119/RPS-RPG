@@ -18,4 +18,9 @@ public class RPSController
 	{
 		
 	}
+	
+	public int calculatedAnswer()
+	{
+		return RPS.computeRPS();
+	}
 }

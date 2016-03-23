@@ -1,5 +1,8 @@
 package rps.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,6 +23,10 @@ public class RPSPanel extends JPanel
 	private JButton p2P;
 	private JButton p2S;
 	private JLabel computer;
+	private JLabel compJoke;
+	private int p1Answer;
+	private int p2Answer;
+	private JLabel winner;
 	
 	public RPSPanel(RPSController baseController)
 	{
@@ -35,6 +42,12 @@ public class RPSPanel extends JPanel
 		p2R = new JButton("Rock");
 		p2P = new JButton("Paper");
 		p2S = new JButton("Scissor");
+		computer = new JLabel("Computer!");
+		baseLayout.putConstraint(SpringLayout.WEST, computer, 264, SpringLayout.WEST, this);
+		compJoke = new JLabel("You might as well give up!");
+		p1Answer = -1;
+		p2Answer = -1;
+		winner = new JLabel("To be decided");
 		
 		setupPanel();
 		setupLayout();
@@ -52,6 +65,8 @@ public class RPSPanel extends JPanel
 		this.add(p2R);
 		this.add(p2P);
 		this.add(p2S);
+		this.add(computer);
+		this.add(compJoke);
 	}
 	
 	private void setupLayout()
@@ -71,10 +86,43 @@ public class RPSPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.EAST, p2P, 2, SpringLayout.WEST, p2S);
 		baseLayout.putConstraint(SpringLayout.NORTH, p2S, 0, SpringLayout.NORTH, p1R);
 		baseLayout.putConstraint(SpringLayout.EAST, p2S, -10, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, compJoke, 165, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, computer, -6, SpringLayout.NORTH, compJoke);
+		baseLayout.putConstraint(SpringLayout.EAST, compJoke, -215, SpringLayout.EAST, this);
 	}
 	
 	private void setupListeners()
 	{
-		
+		p1R.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				p1Answer = 0;
+				submitted();
+			}
+		});
+		p1P.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				p1Answer = 1;
+				submitted();
+			}
+		});		
+		p1S.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				p1Answer = 2;
+				submitted();
+			}
+		});
+	}
+	
+	private void submitted()
+	{
+		int answer = p1Answer;
+		int response = baseController.calculatedAnswer();
+		winner.setText(winner + " is the winner!");
 	}
 }

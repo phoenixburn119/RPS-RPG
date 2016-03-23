@@ -2,7 +2,6 @@ package rps.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -121,8 +120,7 @@ public class RPSPanel extends JPanel
 	
 	private void submitted()
 	{
-		int answer = p1Answer;
-		int response = baseController.calculatedAnswer();
-		winner.setText(winner + " is the winner!");
+		String response = baseController.calculatedAnswer(p1Answer);
+		winner.setText(response + " is the winner!");
 	}
 }

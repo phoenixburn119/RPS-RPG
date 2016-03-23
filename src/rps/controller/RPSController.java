@@ -14,13 +14,8 @@ public class RPSController
 		baseFrame = new RPSFrame(this);
 	}
 	
-	public void start()
+	public String calculatedAnswer(int answer)
 	{
-		
-	}
-	
-	public int calculatedAnswer()
-	{
-		return RPS.computeRPS();
+		return RPS.computeRPS(answer);
 	}
 }

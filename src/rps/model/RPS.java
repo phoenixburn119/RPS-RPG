@@ -9,8 +9,6 @@ public class RPS
 		this.player1 = new String("");
 		
 		
-		
-		
 	}
 			// 0=rock 1=paper 2=scissor
 	public String computeRPS(int answer)

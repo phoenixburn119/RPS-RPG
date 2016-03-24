@@ -11,7 +11,9 @@ public class RPSController
 	
 	public RPSController()
 	{
+		RPS = new RPS();
 		baseFrame = new RPSFrame(this);
+		
 	}
 	
 	public String calculatedAnswer(int answer)

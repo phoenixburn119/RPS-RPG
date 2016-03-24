@@ -32,17 +32,14 @@ public class RPSPanel extends JPanel
 		this.baseController = baseController;
 		baseLayout = new SpringLayout();
 		player1 = new JLabel("Player 1");
-		baseLayout.putConstraint(SpringLayout.WEST, player1, 96, SpringLayout.WEST, this);
 		p1R = new JButton("Rock");
 		p1P = new JButton("Paper");
-		baseLayout.putConstraint(SpringLayout.SOUTH, player1, -6, SpringLayout.NORTH, p1P);
 		p1S = new JButton("Scissor");
 		player2 = new JLabel("Player 2");
 		p2R = new JButton("Rock");
 		p2P = new JButton("Paper");
 		p2S = new JButton("Scissor");
 		computer = new JLabel("Computer!");
-		baseLayout.putConstraint(SpringLayout.WEST, computer, 264, SpringLayout.WEST, this);
 		compJoke = new JLabel("You might as well give up!");
 		p1Answer = -1;
 		p2Answer = -1;
@@ -66,6 +63,7 @@ public class RPSPanel extends JPanel
 		this.add(p2S);
 		this.add(computer);
 		this.add(compJoke);
+		this.add(winner);
 	}
 	
 	private void setupLayout()
@@ -88,6 +86,11 @@ public class RPSPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.NORTH, compJoke, 165, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, computer, -6, SpringLayout.NORTH, compJoke);
 		baseLayout.putConstraint(SpringLayout.EAST, compJoke, -215, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, player1, -6, SpringLayout.NORTH, p1P);
+		baseLayout.putConstraint(SpringLayout.WEST, computer, 264, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, player1, 96, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, winner, 71, SpringLayout.SOUTH, compJoke);
+		baseLayout.putConstraint(SpringLayout.WEST, winner, 0, SpringLayout.WEST, computer);
 	}
 	
 	private void setupListeners()
@@ -121,6 +124,6 @@ public class RPSPanel extends JPanel
 	private void submitted()
 	{
 		String response = baseController.calculatedAnswer(p1Answer);
-		winner.setText(response + " is the winner!");
+		winner.setText(response);
 	}
 }
